@@ -16,6 +16,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -164,11 +165,11 @@ export default function Navbar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
+            sx={{ display: 'block' }}
           >
-            Kitaby
+            <Link href="/" color="inherit" underline="none">Kitaby</Link>
           </Typography>
-          <Search>
+          <Search sx={{ marginLeft: 2, width: {md: '250px', xs: '175px'} }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -207,7 +208,7 @@ export default function Navbar() {
           </Box> 
           : 
           <Stack spacing={2} direction="row" sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Button variant="contained" style={{ backgroundColor: '#FAD0A2', color: '#991408', fontWeight: 600 }}>SIGN IN</Button>
+            <Button variant="contained" size="small" style={{ backgroundColor: '#FAD0A2', color: '#991408', fontWeight: 600, fonstSize: '20px' }}>SIGN IN</Button>
           </Stack>
           }
           {loggedIn === 1 ? <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -224,7 +225,7 @@ export default function Navbar() {
           </Box>
           :
           <Stack spacing={2} direction="row" sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <Button variant="contained" style={{ backgroundColor: '#FAD0A2', color: '#991408', fontWeight: 600 }}>SIGN IN</Button>
+            <Button variant="contained" size="small" sx={{ backgroundColor: '#FAD0A2', color: '#991408', fontWeight: 600 }}>SIGN IN</Button>
           </Stack>}
         </Toolbar>
       </AppBar>
