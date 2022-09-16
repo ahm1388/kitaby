@@ -10,9 +10,9 @@ import './App.css';
 function App() {
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getGroups)
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(getGroups)
+  // }, [dispatch])
   
 
   return (
@@ -20,7 +20,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/bookResults" element={<BookResults />} />
+        <Route path="/BookResults" element={<BookResults />} />
       </Routes>
     </BrowserRouter>
   );

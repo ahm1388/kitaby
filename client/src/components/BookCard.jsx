@@ -47,7 +47,7 @@ const BookCard = ({ title, author, description, img, createdBy, signups, capacit
               width: {md: 200, sm: '40%', xs: '40%'},
               height: 'auto'
             }}
-            alt="To Kill a Mockingbird"
+            alt={title}
             src={img}
           />
           <Box className='book-info' sx={{ textAlign: 'justify', margin: '0 20px' }}>

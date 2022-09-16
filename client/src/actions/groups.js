@@ -6,7 +6,7 @@ export const getGroups = () => async (dispatch) =>  {
         const { data } = await api.fetchGroups()
         dispatch({ type: 'FETCH_ALL', payload: data })
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
 }
 
