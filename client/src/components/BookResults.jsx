@@ -1,4 +1,5 @@
 import BookCard from "./BookCard"
+import { useSelector } from 'react-redux'
 import mockingbird from '../images/mockingbird.jpeg'
 
 
@@ -11,6 +12,7 @@ const BookResults = () => {
   const signups = 15
   const capacity = 40
 
+  const groups = useSelector((state) => state.groups)
   return (
     <>
       <BookCard 

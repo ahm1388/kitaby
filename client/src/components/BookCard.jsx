@@ -47,7 +47,7 @@ const BookCard = ({ title, author, description, img, createdBy, signups, capacit
               width: {md: 200, sm: '40%', xs: '40%'},
               height: 'auto'
             }}
-            alt="How to Kill a Mockingbird"
+            alt="To Kill a Mockingbird"
             src={img}
           />
           <Box className='book-info' sx={{ textAlign: 'justify', margin: '0 20px' }}>
@@ -59,7 +59,7 @@ const BookCard = ({ title, author, description, img, createdBy, signups, capacit
                 {description}
             </Typography>
               <Typography variant="subtitle2" color="#991408" sx={{ opacity: 0.6, marginTop: 3 }}>Created by: {createdBy}</Typography>
-            <Stack container spacing={1} direction="row" sx={{ display: 'flex', marginTop: {md: 15, sm: 2, xs: 2}, marginBottom: 2 }}>
+            <Stack spacing={1} direction="row" sx={{ display: 'flex', marginTop: {md: 15, sm: 2, xs: 2}, marginBottom: 2 }}>
               <Button variant="outlined" sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, borderColor: '#991408', color: '#991408', height: 40 }}>{signups}/{capacity}</Button>
               {joined ?
               <Button variant="contained" sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, backgroundColor: '#991408' }}>View</Button>

@@ -1,9 +1,9 @@
 export default (groups = [], action) => {
     switch (action.type) {
         case 'FETCH_ALL':
-            return groups
+            return action.payload
         case 'CREATE':
-            return groups
+            return [...groups, action.payload]
         default:
             return groups
     }
