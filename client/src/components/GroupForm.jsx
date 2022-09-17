@@ -23,13 +23,13 @@ const GroupForm = () => {
   }
 
   return (
-    <Paper sx={{ padding: 2, width: {md: '40%', xs: '60%'}, marginLeft: {md: '30%', xs: '20%'}, marginTop: '100px', borderRadius: '10px' }}>
+    <Paper sx={{ padding: 2, width: {md: '30%', sm: '50%', xs: '60%'}, marginLeft: {md: '35%', sm: '25', xs: '15%'}, marginTop: {md: '200px', sm: '150px', xs: '100px'}, borderRadius: '10px' }}>
         <form autoComplete="off" noValidate onSubmit={handleSubmit}>
             <Typography variant="h6" sx={{ marginBottom: 2, backgroundColor: '#991408', color: 'white', padding: 2, borderRadius: '10px 10px 0 0' }}>Create a Book Group</Typography>
-            <TextField sx={{ marginBottom: 2 }} name="title" variant="outlined" label="Title" fullWidth value={groupData.title} onChange={(e) => setGroupData({ ...groupData, title: e.target.value })}/>
-            <TextField sx={{ marginBottom: 2 }} name="author" variant="outlined" label="Author" fullWidth value={groupData.author} onChange={(e) => setGroupData({ ...groupData, author: e.target.value })}/>
-            <TextField sx={{ marginBottom: 2 }} name="description" variant="outlined" label="Book Description" fullWidth value={groupData.description} onChange={(e) => setGroupData({ ...groupData, description: e.target.value })}/>
-            <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} sx={{ marginBottom: 2 }} name="capacity" variant="outlined" label="Group Capacity" fullWidth value={groupData.capacity} onChange={(e) => setGroupData({ ...groupData, capacity: e.target.value })}/>
+            <TextField required sx={{ marginBottom: 2 }} name="title" variant="outlined" label="Title" fullWidth value={groupData.title} onChange={(e) => setGroupData({ ...groupData, title: e.target.value })}/>
+            <TextField required sx={{ marginBottom: 2 }} name="author" variant="outlined" label="Author" fullWidth value={groupData.author} onChange={(e) => setGroupData({ ...groupData, author: e.target.value })}/>
+            <TextField required sx={{ marginBottom: 2 }} name="description" variant="outlined" label="Book Description" fullWidth value={groupData.description} onChange={(e) => setGroupData({ ...groupData, description: e.target.value })}/>
+            <TextField required inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} sx={{ marginBottom: 2 }} name="capacity" variant="outlined" label="Group Capacity" fullWidth value={groupData.capacity} onChange={(e) => setGroupData({ ...groupData, capacity: e.target.value })}/>
             <div><FileBase type="file" multiple={false} onDone={({base64}) => setGroupData({ ...groupData, selectedFile: base64 })} /></div>
             <Button variant="contained" sx={{ backgroundColor: '#991408', marginBottom: 2, marginTop: 2 }} size="large" type="submit" fullWidth>Submit</Button>
             <Button variant="contained" sx={{ backgroundColor: '#991408', opacity: 0.6 }} size="small" onClick={clear} fullWidth>Clear</Button>
