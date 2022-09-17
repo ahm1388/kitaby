@@ -1,22 +1,12 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+import { AppBar, Box, Button, Toolbar, IconButton, Typography, InputBase, Link, Badge, MenuItem, Menu, Stack } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
+import { Link as DOMLink } from 'react-router-dom'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -102,6 +92,7 @@ export default function Navbar() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
     </Menu>
   );
 
@@ -207,8 +198,8 @@ export default function Navbar() {
             </IconButton>
           </Box> 
           : 
-          <Stack spacing={2} direction="row" sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Button variant="contained" size="small" style={{ backgroundColor: '#FAD0A2', color: '#991408', fontWeight: 600, fonstSize: '20px' }}>SIGN IN</Button>
+          <Stack  spacing={2} direction="row" sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Button component={DOMLink} to="/auth" variant="contained" size="small" style={{ backgroundColor: '#FAD0A2', color: '#991408', fontWeight: 600, fonstSize: '20px' }}>SIGN IN</Button>
           </Stack>
           }
           {loggedIn === 1 ? <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
@@ -225,7 +216,7 @@ export default function Navbar() {
           </Box>
           :
           <Stack spacing={2} direction="row" sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <Button variant="contained" size="small" sx={{ backgroundColor: '#FAD0A2', color: '#991408', fontWeight: 600 }}>SIGN IN</Button>
+            <Button component={DOMLink} to="/auth" variant="contained" size="small" sx={{ backgroundColor: '#FAD0A2', color: '#991408', fontWeight: 600 }}>SIGN IN</Button>
           </Stack>}
         </Toolbar>
       </AppBar>
