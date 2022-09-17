@@ -4,10 +4,9 @@ import { styled, alpha } from '@mui/material/styles';
 import { AppBar, Box, Button, Toolbar, IconButton, Typography, InputBase, Link, Badge, MenuItem, Menu, Stack } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import { Link as DOMLink, useNavigate, useLocation } from 'react-router-dom'
+import { Link as DOMLink, useLocation } from 'react-router-dom'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -54,7 +53,6 @@ export default function Navbar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const location = useLocation()
 
   useEffect(() => {
@@ -69,10 +67,7 @@ export default function Navbar() {
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' })
-    navigate('/')
-    setAnchorEl(null);
-    handleMobileMenuClose();
-    setUser(null)
+    window.location.reload(false)
   }
 
   const handleProfileMenuOpen = (event) => {

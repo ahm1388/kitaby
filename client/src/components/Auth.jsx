@@ -43,6 +43,7 @@ const Auth = () => {
     try {
       dispatch({ type: 'AUTH', data: { result, token } })
       navigate('/')
+      window.location.reload(false)
     } catch (error) {
       console.log(error)    
     }

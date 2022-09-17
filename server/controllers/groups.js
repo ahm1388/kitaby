@@ -12,7 +12,7 @@ export const getGroups = async  (req, res) => {
 
 export const createGroup = async (req, res) => {
     const group = req.body
-    const newGroup = new BookGroup(group)
+    const newGroup = new BookGroup({ ...group, createdBy: req.userId })
     try {
         console.log(newGroup);
         await newGroup.save()

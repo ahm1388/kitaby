@@ -5,6 +5,7 @@ const groupSchema = mongoose.Schema({
      author: String,
      description: String,
      selectedFile: String,
+     name: String,
      createdBy: String,
      signups: Number,
      capacity: Number

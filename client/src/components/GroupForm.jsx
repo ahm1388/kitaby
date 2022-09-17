@@ -6,20 +6,35 @@ import Button from '@mui/material/Button';
 import FileBase from 'react-file-base64'
 import { useDispatch } from 'react-redux'
 import { createGroup } from '../actions/groups'
+const user = JSON.parse(localStorage.getItem('profile'))
 
 
 const GroupForm = () => {
-  const [groupData, setGroupData] = useState({title: '', author: '', description: '', selectedFile: '', createdBy: 'Ahmed', signups: 0, capacity: 0})
+  const [groupData, setGroupData] = useState({title: '', author: '', description: '', selectedFile: '', signups: 0, capacity: 0})
   const dispatch = useDispatch()
+
+  useEffect (() => {
+    
+}, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(createGroup(groupData))
-    clear()
+      dispatch(createGroup({ ...groupData, name: user?.result?.name }))
+      clear()
   }
 
   const clear = () => {
-    setGroupData({title: '', author: '', description: '', selectedFile: '', createdBy: 'Ahmed', signups: 0, capacity: 0})
+    setGroupData({title: '', author: '', description: '', selectedFile: '', signups: 0, capacity: 0})
+  }
+
+  if (!user?.result?.name) {
+    return (
+      <Paper>
+        <Typography variant="h6" align="center">
+          Please Sign in to join a book group or create your own!
+        </Typography>
+      </Paper>
+    )
   }
 
   return (
