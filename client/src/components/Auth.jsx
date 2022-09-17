@@ -6,20 +6,31 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import AuthInput from './AuthInput'
 import Icon from './icon'
+import { signin, signup } from '../actions/auth'
+
+const initialState = { firstName: '', lastName: '', email: '', password: '', cPassword: '' }
 
 const Auth = () => {
   const [isSignup, setIsSignup] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const [formData, setFormData] = useState(initialState)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    
+    if (isSignup) {
+      dispatch(signup(formData, navigate))
+    } else {
+      dispatch(signin(formData, navigate))
+    }
   }
-  const handleChange = () => {
-
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
   const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword)
+  
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup)
     setShowPassword(false)
@@ -60,7 +71,7 @@ const Auth = () => {
               )}
               <AuthInput name="email" label="Email Address" handleChange={handleChange} type="email" />
               <AuthInput name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
-              {isSignup && <AuthInput name="cpassword" label="Confirm Password" handleChange={handleChange} type="password" />}
+              {isSignup && <AuthInput name="cPassword" label="Confirm Password" handleChange={handleChange} type="password" />}
             </Grid>
             <Button type="submit" variant="contained" sx={{ width: '100%', padding: 1, marginTop: 2, backgroundColor: '#991408' }}>
               {isSignup ? 'Sign Up' : 'Sign In'}

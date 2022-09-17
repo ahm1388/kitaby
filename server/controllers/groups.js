@@ -21,3 +21,19 @@ export const createGroup = async (req, res) => {
         res.status(409).json({ message: error.message })
     }
 }
+
+export const updateGroup = async (req, res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
+
+export const deleteGroup = async (req, res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
