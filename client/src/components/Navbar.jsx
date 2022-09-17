@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux'
 import { styled, alpha } from '@mui/material/styles';
 import { AppBar, Box, Button, Toolbar, IconButton, Typography, InputBase, Link, Badge, MenuItem, Menu, Stack } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
@@ -6,7 +7,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import { Link as DOMLink } from 'react-router-dom'
+import { Link as DOMLink, useNavigate } from 'react-router-dom'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -49,12 +50,29 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [loggedIn, setLoggedIn] = React.useState(0)
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const token = user?.token
+
+    // JWT...
+    setUser(JSON.parse(localStorage.getItem('profile')))
+  }, [user?.token])
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const logout = () => {
+    dispatch({ type: 'LOGOUT' })
+    navigate('/')
+    setAnchorEl(null);
+    handleMobileMenuClose();
+    setUser(null)
+  }
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -92,7 +110,7 @@ export default function Navbar() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={logout}>Logout</MenuItem>
     </Menu>
   );
 
@@ -170,7 +188,7 @@ export default function Navbar() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          {loggedIn === 1 ? <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          {user ? <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
                 <MailIcon />
@@ -202,7 +220,7 @@ export default function Navbar() {
             <Button component={DOMLink} to="/auth" variant="contained" size="small" style={{ backgroundColor: '#FAD0A2', color: '#991408', fontWeight: 600, fonstSize: '20px' }}>SIGN IN</Button>
           </Stack>
           }
-          {loggedIn === 1 ? <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          {user ? <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="show more"

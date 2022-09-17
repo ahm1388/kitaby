@@ -2,12 +2,16 @@ import React, { useState } from 'react'
 import { Avatar, Button, Paper, Grid, Typography, Container} from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { GoogleLogin } from 'react-google-login'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import AuthInput from './AuthInput'
 import Icon from './icon'
 
 const Auth = () => {
   const [isSignup, setIsSignup] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleSubmit = () => {
 
@@ -22,7 +26,15 @@ const Auth = () => {
   }
 
   const googleSuccess =  async (res) => {
-    console.log(res)
+    const result = res?.profileObj
+    const token = res?.tokenId
+
+    try {
+      dispatch({ type: 'AUTH', data: { result, token } })
+      navigate('/')
+    } catch (error) {
+      console.log(error)    
+    }
   }
 
   const googleFailure = (error) => {
@@ -32,7 +44,7 @@ const Auth = () => {
 
 
   return (
-    <Container component="main" maxWidth="xs" sx={{ marginTop: '200px', width: { md: '40%', sm: '50%', xs: '90%' } }}>
+    <Container component="main" maxWidth="xs" sx={{ marginTop: {md: '200px', sm: '175px', xs: '25px'}, width: { md: '40%', sm: '50%', xs: '90%' } }}>
       <Paper elevation={3} sx={{ padding: 2 }}>
         <Avatar  sx={{ marginLeft: '45%', backgroundColor: '#991408' }}>
           <LockOutlinedIcon />
