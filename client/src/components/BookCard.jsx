@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
+import GroupDetails from './GroupDetails';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -15,9 +17,14 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
   }));
 
-const BookCard = ({ title, author, description, img, createdBy, signups, capacity }) => {
-  const [joined, setJoined] = useState(false)
+const BookCard = ({ id, title, author, description, img, createdBy, signups, capacity }) => {
+  const [joined, setJoined] = useState(true)
+  const navigate = useNavigate()
 
+  const toGroup = () => {
+    navigate(`${id}&${title}&${author}&${description}&${createdBy}`)
+  }
+  
   return (
     <div>
       <Stack
@@ -52,7 +59,7 @@ const BookCard = ({ title, author, description, img, createdBy, signups, capacit
           />
           <Box className='book-info' sx={{ textAlign: 'justify', margin: '0 20px' }}>
             <Typography variant="h4" sx={{ fontSize: {md: 30, sm: 30, xs: 20}, color: '#991408' }}>{title}</Typography>
-            <Typography variant="h6" sx={{ fontSize: {md: 18, sm: 18, xs: 14}, color: '#991408', opacity: 0.7  }}>{author}</Typography>
+            <Typography variant="h6" sx={{ fontSize: {md: 18, sm: 18, xs: 14}, color: '#991408', opacity: 0.7 }}>{author}</Typography>
             <Typography variant = "span" sx={{
               margin: 2
             }}>
@@ -62,13 +69,11 @@ const BookCard = ({ title, author, description, img, createdBy, signups, capacit
             <Stack spacing={1} direction="row" sx={{ display: 'flex', marginTop: {md: 15, sm: 2, xs: 2}, marginBottom: 2 }}>
               <Button variant="outlined" sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, borderColor: '#991408', color: '#991408', height: 40 }}>{signups}/{capacity}</Button>
               {joined ?
-              <Button variant="contained" sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, backgroundColor: '#991408' }}>View</Button>
+              <Button variant="contained" onClick={toGroup} sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, backgroundColor: '#991408' }}>View</Button>
               :
               <Button variant="contained" sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, backgroundColor: '#991408' }}>Join</Button>}
             </Stack>
           </Box>
-
-          
         </Item>
       </Stack>
     </div>

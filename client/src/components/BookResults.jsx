@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getGroups } from '../actions/groups'
 
 import CircularProgress from '@mui/joy/CircularProgress'
-import Grid from '@mui/material/Grid'
+import { Grid } from '@mui/material'
 
 const BookResults = () => {
   const dispatch = useDispatch()
@@ -20,11 +20,12 @@ const BookResults = () => {
       {groups.map((group) => (
         <Grid key={group._id}>
           <BookCard
+            id={group._id}
             title={group.title} 
             author={group.author} 
             description={group.description} 
             img={group.selectedFile}
-            createdBy={group.createdBy}
+            createdBy={group.name}
             signups={group.signups}
             capacity={group.capacity}
           />

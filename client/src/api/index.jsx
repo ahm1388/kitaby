@@ -10,6 +10,7 @@ API.interceptors.request.use((req) => {
 })
 
 export const fetchGroups = () => API.get('/groups')
+export const fetchGroup = (id) => API.get(`/groups/${id}`)
 export const createGroup = (newGroup) => API.post('/groups', newGroup)
 export const updateGroup = (id, updatedGroup) => axios.patch(`groups/${id}`, updatedGroup)
 export const deleteGroup = (id) => axios.delete(`groups/${id}`)

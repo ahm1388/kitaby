@@ -10,6 +10,17 @@ export const getGroups = async  (req, res) => {
     }
 }
 
+export const getGroup = async  (req, res) => {
+    const { id } = req.params
+
+    try {
+        const group = await BookGroup.findById(id)
+        res.status(200).json(group)
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
 export const createGroup = async (req, res) => {
     const group = req.body
     const newGroup = new BookGroup({ ...group, createdBy: req.userId })
