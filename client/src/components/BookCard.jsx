@@ -20,10 +20,6 @@ const Item = styled(Paper)(({ theme }) => ({
 const BookCard = ({ id, title, author, description, img, createdBy, signups, capacity }) => {
   const [joined, setJoined] = useState(true)
   const navigate = useNavigate()
-
-  const toGroup = () => {
-    navigate(`${id}&${title}&${author}&${description}&${createdBy}`)
-  }
   
   return (
     <div>
@@ -69,7 +65,7 @@ const BookCard = ({ id, title, author, description, img, createdBy, signups, cap
             <Stack spacing={1} direction="row" sx={{ display: 'flex', marginTop: {md: 15, sm: 2, xs: 2}, marginBottom: 2 }}>
               <Button variant="outlined" sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, borderColor: '#991408', color: '#991408', height: 40 }}>{signups}/{capacity}</Button>
               {joined ?
-              <Button variant="contained" onClick={toGroup} sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, backgroundColor: '#991408' }}>View</Button>
+              <Button variant="contained" onClick={() => navigate(id)} sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, backgroundColor: '#991408' }}>View</Button>
               :
               <Button variant="contained" sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, backgroundColor: '#991408' }}>Join</Button>}
             </Stack>

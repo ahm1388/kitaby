@@ -26,7 +26,7 @@ function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/bookresults" exact element={<BookResults />} />
         <Route path="/bookresults/search" exact element={<BookResults />} />
-        <Route path="/bookresults/:id&:title&:author&:description&:createdby" element={<GroupDetails />} /> 
+        <Route path="/bookresults/:id" element={<GroupDetails />} /> 
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
