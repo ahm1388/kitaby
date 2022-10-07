@@ -9,6 +9,7 @@ import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import GroupDetails from './GroupDetails';
 
+
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -18,8 +19,8 @@ const Item = styled(Paper)(({ theme }) => ({
   }));
 
 const BookCard = ({ id, title, author, description, img, createdBy, signups, capacity }) => {
-  const [joined, setJoined] = useState(true)
   const navigate = useNavigate()
+  const user = JSON.parse(localStorage.getItem('profile'))
   
   return (
     <div>
@@ -63,11 +64,11 @@ const BookCard = ({ id, title, author, description, img, createdBy, signups, cap
             </Typography>
               <Typography variant="subtitle2" color="#991408" sx={{ opacity: 0.6, marginTop: 3 }}>Created by: {createdBy}</Typography>
             <Stack spacing={1} direction="row" sx={{ display: 'flex', marginTop: {md: 15, sm: 2, xs: 2}, marginBottom: 2 }}>
-              <Button variant="outlined" sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, borderColor: '#991408', color: '#991408', height: 40 }}>{signups}/{capacity}</Button>
-              {joined ?
-              <Button variant="contained" onClick={() => navigate(id)} sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, backgroundColor: '#991408' }}>View</Button>
+              {/* <Button variant="outlined" sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, borderColor: '#991408', color: '#991408', height: 40 }}>{signups}/{capacity}</Button> */}
+              {user?.result?.name ?
+              <Button variant="contained" onClick={() => navigate(id)} sx={{ left: { md: '45%', sm: '40%', xs: '30%'}, width: {md: '10%', sm: '20%', xs: '30%'}, backgroundColor: '#991408' }}>View</Button>
               :
-              <Button variant="contained" sx={{ left: { md: '40%', sm: '30%', xs: '20%'}, width: {md: '10%', sm: '20%', xs: '30%'}, backgroundColor: '#991408' }}>Join</Button>}
+              <Button variant="contained" onClick={() => navigate('../auth')} sx={{ left: { md: '45%', sm: '40%', xs: '30%'}, width: {md: '10%', sm: '20%', xs: '30%'}, backgroundColor: '#991408' }}>Login</Button>}
             </Stack>
           </Box>
         </Item>

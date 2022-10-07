@@ -1,18 +1,18 @@
-import { CircularProgress, Divider, Grid, Paper, Typography } from '@mui/material'
+import { Divider, Grid, Paper, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getGroup } from '../actions/groups'
 import CommentSection from './CommentSection'
 
 const GroupDetails = () => {
-  const { group, groups, isLoading } = useSelector((state) => state.groups)
+  const { group, isLoading } = useSelector((state) => state.groups)
   const { id } = useParams()
   const dispatch = useDispatch()
     useEffect(() => {
       dispatch(getGroup(id))
-    }, [dispatch])
+    }, [dispatch, id])
 
     if (!group) return null
     if (isLoading) return 

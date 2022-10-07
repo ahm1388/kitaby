@@ -8,7 +8,10 @@ const groupSchema = mongoose.Schema({
      name: String,
      createdBy: String,
      signups: Number,
-     capacity: Number
+     capacity: Number,
+     likes: Number,
+     dislikes: Number,
+     comments: { type: [String], default: [] }
 })
 
 const BookGroup = mongoose.model('BookGroup', groupSchema)

@@ -10,7 +10,7 @@ const user = JSON.parse(localStorage.getItem('profile'))
 
 
 const GroupForm = () => {
-  const [groupData, setGroupData] = useState({title: '', author: '', description: '', selectedFile: '', signups: 0, capacity: 0})
+  const [groupData, setGroupData] = useState({title: '', author: '', description: '', selectedFile: '', comments: [], likes: 0, dislikes: 0, signups: 0, capacity: 0})
   const dispatch = useDispatch()
 
   useEffect (() => {

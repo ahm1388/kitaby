@@ -17,7 +17,7 @@ app.use('/groups', groupRoutes)
 app.use('/users', userRoutes)
 
 app.get('/', (req, res) => {
-    res.send('App is running')
+    res.send('App is running!')
 })
  
 const PORT = process.env.PORT || 5000
